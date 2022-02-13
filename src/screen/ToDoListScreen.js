@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, StatusBar, FlatList } from "react-native";
+import { StatusBar, FlatList } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {
   View,
@@ -8,9 +8,8 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  Pressable,
 } from "react-native";
-import { getToDoList } from "../../services/todolist";
+import { getToDoList, setStatusToDoList } from "../../services/todolist";
 
 const styles = StyleSheet.create({
   itemList: {
@@ -125,15 +124,24 @@ const ListPending = ({ item }) => {
       <View style={styles.itemContainer}>
         <Text style={styles.itemTitle}>{item.title}</Text>
         <View style={styles.buttonContainer}>
-          <Pressable onPress={() => alert("done")} style={styles.buttonItem}>
+          <TouchableOpacity
+            onPress={() => setStatusToDoList(item._id, "success")}
+            style={styles.buttonItem}
+          >
             <Ionicons name={"checkmark-circle"} size={25} color={"#00e63d"} />
-          </Pressable>
-          <Pressable onPress={() => alert("edit")} style={styles.buttonItem}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => alert("edit")}
+            style={styles.buttonItem}
+          >
             <Ionicons name={"create"} size={25} color={"#ffcc00"} />
-          </Pressable>
-          <Pressable onPress={() => alert("delete")} style={styles.buttonItem}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => alert("delete")}
+            style={styles.buttonItem}
+          >
             <Ionicons name={"trash"} size={25} color={"red"} />
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -146,15 +154,24 @@ const ListResolve = ({ item }) => {
       <View style={styles.itemContainer}>
         <Text style={styles.itemTitle}>{item.title}</Text>
         <View style={styles.buttonContainer}>
-          <Pressable onPress={() => alert("done")} style={styles.buttonItem}>
+          <TouchableOpacity
+            onPress={() => setStatusToDoList(item._id, "pending")}
+            style={styles.buttonItem}
+          >
             <Ionicons name={"close-circle"} size={25} color={"red"} />
-          </Pressable>
-          <Pressable onPress={() => alert("edit")} style={styles.buttonItem}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => alert("edit")}
+            style={styles.buttonItem}
+          >
             <Ionicons name={"create"} size={25} color={"#ffcc00"} />
-          </Pressable>
-          <Pressable onPress={() => alert("delete")} style={styles.buttonItem}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => alert("delete")}
+            style={styles.buttonItem}
+          >
             <Ionicons name={"trash"} size={25} color={"red"} />
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
