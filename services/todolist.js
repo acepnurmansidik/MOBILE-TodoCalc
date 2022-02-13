@@ -12,7 +12,15 @@ export const getToDoList = () => {
   return requestAPI({ url, method: "GET", headers });
 };
 
-// PUT data title
-// PUT data status
+// PUT/PATCH data title
+// PUT/PATCH data status
+export const setStatusToDoList = (id, stParams) => {
+  const url = `${ROOT_API}/todo/change/${id}?st=${stParams}`;
+  let headers = {
+    "Content-type": "application/json",
+  };
+
+  return requestAPI({ url, method: "PATCH", headers });
+};
 // POST data todolist
 // DELETE data todolist

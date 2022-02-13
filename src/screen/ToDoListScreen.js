@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, StatusBar } from "react-native";
+import { Button, StatusBar, FlatList } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {
   View,
@@ -58,11 +58,17 @@ const styles = StyleSheet.create({
 
 export default ToDoListScreen = ({ navigation }) => {
   const [dataTDL, setDataTDL] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(async () => {
+    getDataTDL();
+  }, []);
+
+  const getDataTDL = async () => {
     const response = await getToDoList();
     setDataTDL(response.data);
-  }, []);
+    setIsLoading(false);
+  };
 
   return (
     <SafeAreaView
@@ -93,15 +99,23 @@ export default ToDoListScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <ScrollView style={{ marginTop: 10 }}>
-        {dataTDL.map((item, idx) =>
-          item.status == "pending" ? (
-            <ListPending key={item._id} item={item} />
-          ) : (
-            <ListResolve key={item._id} item={item} />
-          )
-        )}
+        <FlatList
+          data={dataTDL}
+          renderItem={_CheckStatus}
+          keyExtractor={(item) => item._id.toString()}
+          refreshing={isLoading}
+          onRefresh={getDataTDL}
+        />
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const _CheckStatus = ({ item }) => {
+  return item.status == "pending" ? (
+    <ListPending key={item._id} item={item} />
+  ) : (
+    <ListResolve key={item._id} item={item} />
   );
 };
 
