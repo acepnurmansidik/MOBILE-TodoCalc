@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   itemTitle: {
-    width: "75%",
+    width: "70%",
     height: "100%",
     lineHeight: 50,
   },
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonItem: {
-    margin: 5,
+    margin: 1,
   },
 });
 
@@ -117,10 +117,13 @@ const ListPending = ({ act }) => {
       <View style={styles.itemContainer}>
         <Text style={styles.itemTitle}>{act.title}</Text>
         <View style={styles.buttonContainer}>
-          <Pressable onPress={() => alert("asd")} style={styles.buttonItem}>
+          <Pressable onPress={() => alert("done")} style={styles.buttonItem}>
             <Ionicons name={"checkmark-circle"} size={25} color={"#00e63d"} />
           </Pressable>
-          <Pressable onPress={() => alert("asd")} style={styles.buttonItem}>
+          <Pressable onPress={() => alert("edit")} style={styles.buttonItem}>
+            <Ionicons name={"create"} size={25} color={"#ffcc00"} />
+          </Pressable>
+          <Pressable onPress={() => alert("delete")} style={styles.buttonItem}>
             <Ionicons name={"trash"} size={25} color={"red"} />
           </Pressable>
         </View>
@@ -134,6 +137,11 @@ const ListResolve = ({ act }) => {
     <View style={[styles.itemListSuccess, styles.elevation]}>
       <View style={styles.itemContainer}>
         <Text style={styles.itemTitle}>{act.title}</Text>
+        <View style={styles.buttonContainer}>
+          <Pressable onPress={() => alert("delete")} style={styles.buttonItem}>
+            <Ionicons name={"trash"} size={25} color={"red"} />
+          </Pressable>
+        </View>
       </View>
     </View>
   );
