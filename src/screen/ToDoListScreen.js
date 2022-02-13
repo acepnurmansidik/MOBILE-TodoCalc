@@ -90,15 +90,15 @@ export default ToDoListScreen = ({ navigation }) => {
             borderRadius: 50,
             position: "absolute",
             zIndex: 2,
-            right: 10,
-            top: 30,
+            right: 4,
+            top: 21,
           }}
           onPress={() => navigation.navigate("Home")}
         >
           <Text style={{ fontSize: 30, color: "#FFF" }}>+</Text>
         </TouchableOpacity>
       </View>
-      <ScrollView>
+      <ScrollView style={{ marginTop: 10 }}>
         {activity.map((act, idx) =>
           act.status == "pending" ? (
             <ListPending act={act} />
