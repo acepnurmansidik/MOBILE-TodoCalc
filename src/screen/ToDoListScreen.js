@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { Button, StatusBar } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {
@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Pressable,
 } from "react-native";
+import { getToDoList } from "../../services/todolist";
 
 const styles = StyleSheet.create({
   itemList: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
     height: 60,
   },
   itemListSuccess: {
-    backgroundColor: "#4aff7a",
+    backgroundColor: "#a1ff91",
     margin: 10,
     borderRadius: 25,
     height: 60,
@@ -56,20 +57,13 @@ const styles = StyleSheet.create({
 });
 
 export default ToDoListScreen = ({ navigation }) => {
-  const activity = [
-    { id: 1, status: "pending", title: "do task 1" },
-    { id: 2, status: "pending", title: "do task 2" },
-    { id: 3, status: "pending", title: "do task 3" },
-    { id: 4, status: "success", title: "do task 4" },
-    { id: 5, status: "pending", title: "do task 5" },
-    { id: 6, status: "pending", title: "do task 6" },
-    { id: 7, status: "pending", title: "do task 7" },
-    { id: 8, status: "pending", title: "do task 8" },
-    { id: 9, status: "pending", title: "do task 9" },
-    { id: 10, status: "success", title: "do task 10" },
-    { id: 11, status: "pending", title: "do task 11" },
-    { id: 12, status: "pending", title: "do task 12" },
-  ];
+  const [dataTDL, setDataTDL] = useState([]);
+
+  useEffect(async () => {
+    const response = await getToDoList();
+    setDataTDL(response.data);
+  }, []);
+
   return (
     <SafeAreaView
       style={{
@@ -99,11 +93,11 @@ export default ToDoListScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <ScrollView style={{ marginTop: 10 }}>
-        {activity.map((act, idx) =>
-          act.status == "pending" ? (
-            <ListPending key={act.id} act={act} />
+        {dataTDL.map((item, idx) =>
+          item.status == "pending" ? (
+            <ListPending key={item._id} item={item} />
           ) : (
-            <ListResolve key={act.id} act={act} />
+            <ListResolve key={item._id} item={item} />
           )
         )}
       </ScrollView>
@@ -111,11 +105,11 @@ export default ToDoListScreen = ({ navigation }) => {
   );
 };
 
-const ListPending = ({ act }) => {
+const ListPending = ({ item }) => {
   return (
     <View style={[styles.itemList, styles.elevation]}>
       <View style={styles.itemContainer}>
-        <Text style={styles.itemTitle}>{act.title}</Text>
+        <Text style={styles.itemTitle}>{item.title}</Text>
         <View style={styles.buttonContainer}>
           <Pressable onPress={() => alert("done")} style={styles.buttonItem}>
             <Ionicons name={"checkmark-circle"} size={25} color={"#00e63d"} />
@@ -132,12 +126,18 @@ const ListPending = ({ act }) => {
   );
 };
 
-const ListResolve = ({ act }) => {
+const ListResolve = ({ item }) => {
   return (
     <View style={[styles.itemListSuccess, styles.elevation]}>
       <View style={styles.itemContainer}>
-        <Text style={styles.itemTitle}>{act.title}</Text>
+        <Text style={styles.itemTitle}>{item.title}</Text>
         <View style={styles.buttonContainer}>
+          <Pressable onPress={() => alert("done")} style={styles.buttonItem}>
+            <Ionicons name={"close-circle"} size={25} color={"red"} />
+          </Pressable>
+          <Pressable onPress={() => alert("edit")} style={styles.buttonItem}>
+            <Ionicons name={"create"} size={25} color={"#ffcc00"} />
+          </Pressable>
           <Pressable onPress={() => alert("delete")} style={styles.buttonItem}>
             <Ionicons name={"trash"} size={25} color={"red"} />
           </Pressable>
