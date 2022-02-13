@@ -101,9 +101,9 @@ export default ToDoListScreen = ({ navigation }) => {
       <ScrollView style={{ marginTop: 10 }}>
         {activity.map((act, idx) =>
           act.status == "pending" ? (
-            <ListPending act={act} />
+            <ListPending key={act.id} act={act} />
           ) : (
-            <ListResolve act={act} />
+            <ListResolve key={act.id} act={act} />
           )
         )}
       </ScrollView>
@@ -113,7 +113,7 @@ export default ToDoListScreen = ({ navigation }) => {
 
 const ListPending = ({ act }) => {
   return (
-    <View key={act.id} style={[styles.itemList, styles.elevation]}>
+    <View style={[styles.itemList, styles.elevation]}>
       <View style={styles.itemContainer}>
         <Text style={styles.itemTitle}>{act.title}</Text>
         <View style={styles.buttonContainer}>
@@ -131,7 +131,7 @@ const ListPending = ({ act }) => {
 
 const ListResolve = ({ act }) => {
   return (
-    <View key={act.id} style={[styles.itemListSuccess, styles.elevation]}>
+    <View style={[styles.itemListSuccess, styles.elevation]}>
       <View style={styles.itemContainer}>
         <Text style={styles.itemTitle}>{act.title}</Text>
       </View>

@@ -5,6 +5,8 @@ import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
 const styles = StyleSheet.create({
   formContainer: {
     padding: 10,
+    display: "flex",
+    alignItems: "center",
   },
   input: {
     backgroundColor: "#FFF",
@@ -12,6 +14,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 100,
     padding: 15,
+    width: "94%",
+    marginBottom: 40,
   },
   elevation: {
     elevation: 6,
@@ -21,7 +25,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#4896f7",
     borderRadius: 50,
     height: 50,
-    width: "100%",
+    width: "95%",
   },
   buttonText: {
     textAlign: "center",
@@ -42,7 +46,6 @@ export default FormInputScreen = ({ navigation }) => {
         multiline={true}
         numberOfLines={5}
       />
-      <Text>{text}</Text>
       <Pressable onPress={() => alert("asd")} style={styles.button}>
         <Text style={styles.buttonText}>Submit</Text>
       </Pressable>
