@@ -40,8 +40,8 @@ export default function MainContainer() {
         })}
       >
         <Tab.Screen name={homeName} component={HomeScreen} />
-        <Tab.Screen name={todolistName} component={CalculatorScreen} />
-        <Tab.Screen name={calculatorName} component={ToDoListScreen} />
+        <Tab.Screen name={todolistName} component={ToDoListScreen} />
+        <Tab.Screen name={calculatorName} component={CalculatorScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
