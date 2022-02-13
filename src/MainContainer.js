@@ -1,12 +1,10 @@
 import * as React from "react";
-import { View, Text, StatusBar } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 // screen
-import ToDoListScreen from "./screen/ToDoListScreen";
 import CalculatorScreen from "./screen/CalculatorScreen";
 import { ToDoFromStackGroup } from "./navigation/Navigations";
 

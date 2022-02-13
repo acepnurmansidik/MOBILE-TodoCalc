@@ -6,14 +6,6 @@ import FormInputScreen from "../screen/FormInputScreen";
 
 const Stack = createStackNavigator();
 
-const screenOptionStyle = {
-  headerStyle: {
-    backgroundColor: "#9AC4F8",
-  },
-  headerTintColor: "white",
-  headerBackTitle: "Back",
-};
-
 const ToDoFromStackGroup = () => {
   return (
     <Stack.Navigator
