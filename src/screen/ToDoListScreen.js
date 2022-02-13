@@ -1,7 +1,10 @@
 import * as React from "react";
+import { StatusBar } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
 import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
 
-export default function ToDoListScreen({ navigation }) {
+const Stack = createStackNavigator();
+export default ToDoListScreen = ({ navigation }) => {
   const activity = [
     { id: 1, status: "pending", title: "do task 1" },
     { id: 2, status: "pending", title: "do task 2" },
@@ -23,6 +26,7 @@ export default function ToDoListScreen({ navigation }) {
         position: "relative",
       }}
     >
+      <StatusBar hidden={true} />
       <View style={{ bottom: 30 }}>
         <TouchableOpacity
           style={{
@@ -35,9 +39,10 @@ export default function ToDoListScreen({ navigation }) {
             borderRadius: 50,
             position: "absolute",
             zIndex: 2,
-            right: 20,
+            right: 10,
+            top: 30,
           }}
-          onPress={() => alert("Form")}
+          onPress={() => navigation.navigate("Home")}
         >
           <Text style={{ fontSize: 30, color: "#FFF" }}>+</Text>
         </TouchableOpacity>
@@ -49,58 +54,4 @@ export default function ToDoListScreen({ navigation }) {
       </ScrollView> */}
     </SafeAreaView>
   );
-}
-
-function ListItemPending({ act }) {
-  return (
-    <View
-      key={act.id}
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-evenly",
-      }}
-    >
-      <NeuView
-        color="#eef2f9"
-        height={60}
-        width={350}
-        borderRadius={16}
-        style={{ margin: 10 }}
-        inset
-      >
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            margin: 10,
-            alignItems: "center",
-          }}
-        >
-          <Text style={{ flex: 1.5 }}>{act.title}</Text>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <NeuButton
-              color="#eef2f9"
-              width={40}
-              height={40}
-              borderRadius={10}
-              style={{ marginRight: 10 }}
-            >
-              <Text>Done</Text>
-            </NeuButton>
-            <NeuButton color="#eef2f9" width={40} height={40} borderRadius={10}>
-              <Text>Delete</Text>
-            </NeuButton>
-          </View>
-        </View>
-      </NeuView>
-    </View>
-  );
-}
+};

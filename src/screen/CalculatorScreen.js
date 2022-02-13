@@ -1,15 +1,16 @@
 import * as React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StatusBar } from "react-native";
 
-export default function FormScreen() {
+export default CalculatorScreen = () => {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <StatusBar hidden />
       <Text
-        onPress={() => alert("This is home screen")}
+        onPress={() => navigation.navigate("Home")}
         style={{ fontSize: 26, fontWeight: "bold" }}
       >
         Home Scren
       </Text>
     </View>
   );
-}
+};
