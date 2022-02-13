@@ -9,7 +9,11 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
-import { getToDoList, setStatusToDoList } from "../../services/todolist";
+import {
+  getToDoList,
+  setDeleteToDoList,
+  setStatusToDoList,
+} from "../../services/todolist";
 
 const styles = StyleSheet.create({
   itemList: {
@@ -137,7 +141,7 @@ const ListPending = ({ item }) => {
             <Ionicons name={"create"} size={25} color={"#ffcc00"} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => alert("delete")}
+            onPress={() => setDeleteToDoList(item._id)}
             style={styles.buttonItem}
           >
             <Ionicons name={"trash"} size={25} color={"red"} />
@@ -167,7 +171,7 @@ const ListResolve = ({ item }) => {
             <Ionicons name={"create"} size={25} color={"#ffcc00"} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => alert("delete")}
+            onPress={() => setDeleteToDoList(item._id)}
             style={styles.buttonItem}
           >
             <Ionicons name={"trash"} size={25} color={"red"} />

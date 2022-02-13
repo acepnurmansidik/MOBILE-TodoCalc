@@ -24,3 +24,11 @@ export const setStatusToDoList = (id, stParams) => {
 };
 // POST data todolist
 // DELETE data todolist
+export const setDeleteToDoList = (id) => {
+  const url = `${ROOT_API}/todo/${id}`;
+  let headers = {
+    "Content-type": "application/json",
+  };
+
+  return requestAPI({ url, method: "DELETE", headers });
+};
