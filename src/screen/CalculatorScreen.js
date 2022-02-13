@@ -9,7 +9,7 @@ export default CalculatorScreen = () => {
         onPress={() => navigation.navigate("Home")}
         style={{ fontSize: 26, fontWeight: "bold" }}
       >
-        Home Scren
+        Calculator Screen
       </Text>
     </View>
   );
