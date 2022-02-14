@@ -114,17 +114,9 @@ export default ToDoListScreen = ({ navigation }) => {
   );
 };
 
-const _CheckStatus = ({ item }) => {
+const _CheckStatus = ({ item, navigation }) => {
   return item.status == "pending" ? (
-    <ListPending key={item._id} item={item} />
-  ) : (
-    <ListResolve key={item._id} item={item} />
-  );
-};
-
-const ListPending = ({ item }) => {
-  return (
-    <View style={[styles.itemList, styles.elevation]}>
+    <View key={item._id} style={[styles.itemList, styles.elevation]}>
       <View style={styles.itemContainer}>
         <Text style={styles.itemTitle}>{item.title}</Text>
         <View style={styles.buttonContainer}>
@@ -135,7 +127,7 @@ const ListPending = ({ item }) => {
             <Ionicons name={"checkmark-circle"} size={25} color={"#00e63d"} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => alert("edit")}
+            onPress={() => navigation.navigate("To Do List")}
             style={styles.buttonItem}
           >
             <Ionicons name={"create"} size={25} color={"#ffcc00"} />
@@ -149,12 +141,8 @@ const ListPending = ({ item }) => {
         </View>
       </View>
     </View>
-  );
-};
-
-const ListResolve = ({ item }) => {
-  return (
-    <View style={[styles.itemListSuccess, styles.elevation]}>
+  ) : (
+    <View key={item._id} style={[styles.itemListSuccess, styles.elevation]}>
       <View style={styles.itemContainer}>
         <Text style={styles.itemTitle}>{item.title}</Text>
         <View style={styles.buttonContainer}>
@@ -165,7 +153,7 @@ const ListResolve = ({ item }) => {
             <Ionicons name={"close-circle"} size={25} color={"red"} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => alert("edit")}
+            onPress={() => navigation.navigate("To Do List")}
             style={styles.buttonItem}
           >
             <Ionicons name={"create"} size={25} color={"#ffcc00"} />
