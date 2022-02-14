@@ -23,6 +23,12 @@ export const setStatusToDoList = (id, stParams) => {
   return requestAPI({ url, method: "PATCH", headers });
 };
 // POST data todolist
+export const setCreateToDoList = (data) => {
+  const url = `${ROOT_API}/todo`;
+  let headers = {};
+
+  return requestAPI({ url, method: "POST", data, headers });
+};
 // DELETE data todolist
 export const setDeleteToDoList = (id) => {
   const url = `${ROOT_API}/todo/${id}`;

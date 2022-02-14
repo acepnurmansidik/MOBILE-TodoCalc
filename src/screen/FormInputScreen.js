@@ -1,6 +1,14 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
+
+import { setCreateToDoList } from "../../services/todolist";
 
 const styles = StyleSheet.create({
   formContainer: {
@@ -36,19 +44,30 @@ const styles = StyleSheet.create({
   },
 });
 export default FormInputScreen = ({ navigation }) => {
-  const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
+
+  const handleOnSubmit = async () => {
+    if (!title.length) {
+      return alert("Field is required!");
+    }
+    let data = {
+      title,
+    };
+    await setCreateToDoList(data);
+    navigation.navigate("To Do List");
+  };
   return (
     <View style={styles.formContainer}>
       <TextInput
         style={[styles.input, styles.elevation]}
-        onChangeText={setText}
-        value={text}
+        value={title}
+        onChangeText={(value) => setTitle(value)}
         multiline={true}
         numberOfLines={5}
       />
-      <Pressable onPress={() => alert("asd")} style={styles.button}>
+      <TouchableOpacity onPress={handleOnSubmit} style={styles.button}>
         <Text style={styles.buttonText}>Submit</Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };
